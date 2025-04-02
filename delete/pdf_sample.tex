@@ -1,0 +1,1101 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,
+]{article}
+
+\usepackage{amsmath,amssymb}
+\usepackage{setspace}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{5}
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Workiva Inc (WK)},
+  pdfauthor={Eduardo Ramirez},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Workiva Inc (WK)}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{CFA Institute Research Challenge}
+\author{Eduardo Ramirez}
+\date{2025-02-10}
+
+\begin{document}
+\maketitle
+
+
+\setstretch{1}
+\section{Business Description}\label{business-description}
+
+Worki va Inc.~provides cloud-based and mobile-enabled platforms for
+enterprises. The Company offers software to collect, manage, report, and
+analyze business data in real time. ``Workiva delivers a unified
+platform that offers financial and non-financial investor-grade business
+reporting, a unique and key differentiator separating us from the
+competition'' (2023 annual report: CEO Julie ISkow). ``Platform for
+assured integrated reporting---bringing financial reporting, ESG, and
+GRC teams together in one controlled, secure, audit-ready environment
+and helping them orchestrate wo rk across departments and eliminate
+technology silos'' (2023 annual report).
+
+See details in
+\hyperref[industry-overview-competitive-positioning]{Industry Overview}.
+
+\section{Snapshot}\label{snapshot}
+
+\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, colback=white, opacityback=0, bottomrule=.15mm, leftrule=.75mm, arc=.35mm, rightrule=.15mm, toprule=.15mm, left=2mm, breakable]
+
+\textbf{Recommendation:} Hold\\
+\emph{Price Target:} \$102 per share
+
+\end{tcolorbox}
+
+Although Workiva demonstrates promising long-term potential (see
+Business Description and ESG sections), we recommend a Hold rating.
+Slowing growth trends and persistent net losses warrant caution over the
+near to mid-term, despite strong recurring revenue and improving gross
+margins.
+
+\subsection{Key Points}\label{key-points}
+
+\subsubsection{Business Model \& Growth
+Prospects}\label{business-model-growth-prospects}
+
+\begin{itemize}
+\tightlist
+\item
+  Cloud-Native Platform: Integrates financial, ESG, and GRC reporting in
+  a unified environment.
+\item
+  Recurring Revenue Strength: Subscription revenues account for
+  \textasciitilde89\% of total, supporting reliable cash flows (see
+  Financial Analysis).
+\end{itemize}
+
+\subsubsection{Revenue Growth vs.~Potential
+Deceleration}\label{revenue-growth-vs.-potential-deceleration}
+
+\begin{itemize}
+\tightlist
+\item
+  Steady Top-Line Growth: Revenue rose from \$351.6M (2020) to \$630.0M
+  (2023). Year-over-year quarterly growth remains in the mid-teens
+  (14.5--17.35\%).
+\item
+  Growth Slowing as WK Scales: The pace has moderated from previous
+  20\%+ territory, suggesting a more measured expansion going forward
+  (see Quarterly Financial Performance).
+\end{itemize}
+
+\subsubsection{Profitability Challenges}\label{profitability-challenges}
+
+\begin{itemize}
+\tightlist
+\item
+  Elevated SG\&A (58--62\% of Sales): High operating costs have
+  contributed to persistent net losses (e.g., -\$127.5M in 2023).
+\item
+  Potential Margin Leverage: Gross margins hover around 77\%, indicating
+  room for operating leverage if SG\&A moderates. Recent quarters (Q3 \&
+  Q4 2024) showed smaller losses, but a clear path to profitability is
+  not yet confirmed.
+\end{itemize}
+
+\subsubsection{Valuation \& Rationale for
+Hold}\label{valuation-rationale-for-hold}
+
+\begin{itemize}
+\tightlist
+\item
+  Monte Carlo \& DCF Analyses: Indicate a fair value around \$102 per
+  share, assuming continued growth (18--20\%) and stable margins (see
+  Valuation).
+\item
+  Hesitation: Uncertainties around slower near-term demand and the
+  company's ability to trim operating expenses justify a more
+  conservative approach.
+\item
+  Relative Valuation: WK trades at a premium vs.~larger peers (SAP,
+  Oracle, Intuit), supported by high recurring revenue and ESG/GRC
+  tailwinds---but this premium might compress if growth decelerates
+  significantly.
+\end{itemize}
+
+\subsubsection{ESG \& Long-Term
+Advantages}\label{esg-long-term-advantages}
+
+\begin{itemize}
+\tightlist
+\item
+  ESG Leadership: High renewal rates (\textasciitilde98\%) reflect
+  sticky customer relationships, especially in ESG/GRC solutions.
+  Workiva's integrated reporting platform aligns with shifting global
+  regulations and stakeholder expectations (see ESG section).
+\item
+  Differentiation: ESG capabilities and a unified reporting solution
+  position WK well in a rapidly evolving regulatory environment.
+\end{itemize}
+
+Workiva's innovative platform and high retention rates underscore its
+long-term potential, particularly as ESG and integrated reporting needs
+expand. However, slowing revenue growth, persistently high SG\&A, and
+consistent net losses create near-term uncertainties. While the
+underlying fundamentals may support a positive long-run view, we issue a
+Hold rating due to the potential for slower growth and the need for
+disciplined cost management before WK can convincingly transition to
+sustained profitability.
+
+\section{Industry Overview \& Competitive
+Positioning}\label{industry-overview-competitive-positioning}
+
+\subsection{1. Threat of New Entrants:}\label{threat-of-new-entrants}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Barriers to Entry:} New entrants would face significant
+  challenges complying with evolving regulations in financial reporting,
+  ESG, and GRC. Developing a robust, integrated platform with strong
+  reliability, performance, and audit capabilities further raises the
+  entry hurdle. Building the product breadth and brand reputation
+  Workiva has achieved requires significant time and investment.
+\item
+  \textbf{Economies of Scale:} Workiva's cloud-based approach and strong
+  network effects enable it to serve more customers without a linear
+  increase in costs. As its user base expands, Workiva can invest more
+  in platform innovation and integrations, maintaining a competitive
+  edge.
+\item
+  \textbf{Access to Supply Channels:} Existing relationships with
+  enterprise clients and industry stakeholders function as an informal
+  distribution network for Workiva's solutions. Newcomers must forge
+  similar ties from scratch, limiting their initial market penetration.
+\end{itemize}
+
+\subsection{2. Bargaining Power of
+Customers:}\label{bargaining-power-of-customers}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Price Takers:} Customers tend to be price takers since they
+  can choose from various competitors---ranging from manual processes to
+  diversified software solutions---although high switching costs and the
+  need for robust global reporting moderate this power.
+\item
+  \textbf{Alternatives:} The availability of numerous alternatives
+  (including niche and broad enterprise solutions) gives customers
+  options.
+\end{itemize}
+
+\subsection{3. Bargaining Power of
+Suppliers:}\label{bargaining-power-of-suppliers}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Price Takers:} Suppliers---primarily cloud infrastructure
+  providers---are essentially price takers due to a competitive market
+  with multiple viable alternatives.
+\item
+  \textbf{Supply Constraints:} The competitive nature of the cloud
+  computing market ensures that no single supplier can impose
+  significant constraints, thereby limiting their bargaining power.
+\end{itemize}
+
+\subsection{4. Threat of Substitute Products or Services:
+High}\label{threat-of-substitute-products-or-services-high}
+
+\begin{itemize}
+\tightlist
+\item
+  While customers can turn to various substitutes---from traditional
+  manual methods to specialized software---Workiva's unique integrated
+  platform and robust data-linking capabilities make it a challenging
+  alternative, though the threat of substitution remains moderately
+  high.
+\end{itemize}
+
+\subsection{5. Intensity of Competitive
+Rivalry}\label{intensity-of-competitive-rivalry}
+
+\begin{itemize}
+\tightlist
+\item
+  Workiva faces intense competitive rivalry from a wide range of
+  competitors including diversified enterprise software providers, niche
+  vendors, and even internal reporting solutions, all contending on
+  product features, price, and innovation in a rapidly evolving market.
+\end{itemize}
+
+\section{Financial Analysis}\label{financial-analysis}
+
+Workiva Inc.~has demonstrated robust revenue expansion both annually and
+quarterly. Annual revenue climbed from \$351.6 million in 2020 to
+\$630.0 million in 2023, with year-over-year growth decelerating from
+26.1\% in 2021 to 17.1\% in 2023. In parallel, quarterly performance in
+2024 shows a steady acceleration: quarter-over-quarter revenue growth
+improved from 1.04\% in Q2 to 7.69\% in Q4, while year-over-year
+quarterly growth rates ranged between 14.50\% and 17.35\%. This
+consistent top-line momentum is primarily driven by the subscription and
+support revenue stream, which underpins Workiva's recurring revenue
+model.
+
+Despite these strong growth metrics, profit concerns persist. Elevated
+SG\&A expenses, which have remained in the high 50\% to low 60\% range
+of revenue in recent quarters, have contributed to sustained operating
+and net losses. Although recent trends in Q3 and Q4 2024 suggest a
+potential easing of losses after a spike in Q2, overall profitability
+remains a challenge. For investors, the key lies in monitoring whether
+the company's significant investments in growth can eventually yield the
+operating leverage needed to reverse the current loss trajectory.
+
+\subsection{Revenue Growth vs.~Profitability
+Comparison}\label{revenue-growth-vs.-profitability-comparison}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Revenue trends:} 19\% CAGR from \$443.3M (2021) to \$630M
+  (2023).
+\item
+  Workiva has had steady growth over the years as shown in data 1 table.
+  The compound annual growth rate of revenue was 20\% from 2018 to 2020,
+  22\% from 2019 to 2021, and 24\% from 2020 to 2022. From 2021 to 2023,
+  the compound annual growth rate was 19\%.
+\item
+  The year-over-year percentage increase in total revenue was 17.5\% in
+  2018, 21.9\% in 2019, 18.0\% in 2020, 26.1\% in 2021, 21.3\% in 2022,
+  and 17.1\% in 2023.
+\item
+  Approximately 84\% of the revenue in 2020, 86\% of the revenue in
+  2021, 86\% of the revenue in 2022, and 89\% of the revenue in 2023 was
+  derived from subscription and support fees, with the remainder from
+  professional services.
+\item
+  \textbf{Profitability concerns:} Rising net losses (\$127.5M in 2023).
+  Workiva has incurred net losses in recent years as shown in the data
+  1.1 table.
+\item
+  \textbf{Subscription revenue dominance:} 89\% of total revenue.
+\end{itemize}
+
+\subsection{Quarterly Financial Performance Analysis
+(2019-2024)}\label{quarterly-financial-performance-analysis-2019-2024}
+
+\subsubsection{1. Revenue Analysis}\label{revenue-analysis}
+
+\begin{itemize}
+\tightlist
+\item
+  While revenue consistently increases, the rate of QoQ growth varies as
+  shown in data 2 table.
+\item
+  \textbf{Year-over-Year (YoY) Revenue Growth:} To get a clearer picture
+  of sustained growth, let's look at YoY growth in the data 3 table.
+  These YoY growth rates, while still positive, are in the mid-teens,
+  and seem to be slightly lower than the historical annual growth rates
+  mentioned in the year report (which were in the 20\%+ range for
+  earlier periods). This potentially suggests a deceleration in the
+  revenue growth rate as the company scales, aligning with the annual
+  report commentary.
+\item
+  \textbf{Implications and Link to Annual Report:} The quarterly data
+  reinforces the annual report observation that while revenue growth is
+  still robust, the percentage increase is showing signs of slowing
+  down. This is a typical pattern for maturing growth companies.
+  However, sustaining double-digit YoY quarterly growth consistently is
+  still a positive signal.
+\end{itemize}
+
+\subsubsection{2. Selling, General and Administrative (SG\&A) Expense
+Analysis}\label{selling-general-and-administrative-sga-expense-analysis}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Increasing SG\&A Expenses:} SG\&A expenses have also generally
+  increased over the quarters, from \$35.748 million in Q1 2019 to
+  \$116.913 million in Q4 2024. This is not unexpected for a growing
+  company investing in sales, marketing, and infrastructure to support
+  future expansion.
+\item
+  \textbf{SG\&A as a Percentage of Revenue:} The SG\&A as a percentage
+  of revenue appears to be fluctuating in recent quarters but with a
+  general trend of staying in the high 50s to low 60s percentage range.
+  There is a slight dip in Q4 2024, which could be a positive sign if
+  sustained. However, overall, SG\&A is consuming a significant portion
+  of revenue as shown in data 4 table.
+\item
+  \textbf{Implications:} The increasing SG\&A costs, especially as a
+  percentage of revenue remains high, are important to monitor. For a
+  SaaS company like Workiva (implied by subscription revenue focus in
+  the annual report), the goal is often to achieve operating leverage
+  where revenue growth outpaces SG\&A growth over time, leading to
+  improved profitability. Currently, the data suggests that while
+  revenue is growing, SG\&A is growing almost in proportion, preventing
+  significant operating leverage gains in these periods.
+\end{itemize}
+
+\subsubsection{3. Profitability Analysis}\label{profitability-analysis}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Operating Losses:} Workiva has consistently reported operating
+  losses across all quarters analyzed. The operating loss trend is
+  somewhat volatile: While still negative, the operating losses seem to
+  be decreasing in the most recent two quarters (Q3 \& Q4 2024) after a
+  spike in Q2 2024. This could indicate improving operating efficiency
+  or expense management in the latter half of 2024, but it's too early
+  to confirm a trend reversal based on just two quarters.
+\item
+  \textbf{Net Losses Available to Common Shareholders:} The net losses
+  mirror the operating loss trend, and Workiva has consistently been net
+  loss-making throughout the period. Similar to operating losses, the
+  net losses also show a potential decrease in the most recent two
+  quarters of 2024. However, the net loss in Q4 2024 is still higher
+  than in Q1 2019, indicating that overall profitability has not yet
+  been achieved.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The quarterly losses are consistent with the annual report
+    information highlighting net losses for the full years (2020-2023).
+    The annual report also mentioned an ``induced conversion expense''
+    in 2023 which significantly impacted net loss in that year. Without
+    knowing if similar one-time expenses are impacting these quarterly
+    results, it's harder to isolate the underlying operational
+    profitability trend just from this data.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{4. Gross Margin Analysis}\label{gross-margin-analysis}
+
+Workiva's gross margin has generally trended upward over time as we can
+see in data 5.1 table, reflecting increasing operating efficiency in
+delivering its subscription-based services:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{2019--2020 Transition:} Gross margin improved from the
+  low-70\% range (e.g., 72.1\% in Q1 2019) to the mid-70\% range by late
+  2020.
+\item
+  \textbf{2021--2022 Levels:} It remained relatively stable in the
+  75--76\% range, indicating that economies of scale and cost management
+  are holding steady.
+\item
+  \textbf{2023--2024 Improvements:} Gross margin in Q4 2023 reached
+  approximately 77.3\%, and Q4 2024 ended near 77.1\%, among the highest
+  levels in the dataset.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    A mid- to high-70\% gross margin is strong for a SaaS-oriented
+    business. However, elevated SG\&A spending still outweighs these
+    gains, preventing net profitability. Maintaining or expanding these
+    margins will be critical to Workiva's path toward net income
+    positivity.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{5. Cash Flow Analysis}\label{cash-flow-analysis}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Fluctuating Cash Balances:} Cash has swung significantly as
+  shown in data 5.2 table---rising sharply in certain quarters (e.g., Q3
+  2019, Q3 2023) and then declining, suggesting periodic capital raises
+  or debt issuances to fund operations. Despite ongoing net losses,
+  Workiva has generally maintained adequate cash to cover near-term
+  obligations.
+\item
+  \textbf{Liquidity Ratios:} Current and Quick Ratios typically stay
+  above 1.0, indicating that short-term assets exceed short-term
+  liabilities. Cash Ratio often hovers around 0.5--0.9, dipping below
+  1.0 unless bolstered by a capital raise. (see appendix figure 5.2.1
+  for Current and Cash ratio comparison)
+\item
+  \textbf{High Days' Sales in Receivables:} High Days' Sales in
+  Receivables (often above 200 days) can delay cash collections,
+  reinforcing the importance of efficient receivables management.
+\end{itemize}
+
+\subsubsection{6. Key Observations}\label{key-observations}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Growth Company in Investment Phase:} Workiva exhibits
+  characteristics of a growth company that is still heavily investing
+  for future expansion. Consistent revenue growth is a positive
+  indicator of market demand and product acceptance.
+\item
+  \textbf{Revenue Growth Deceleration Needs Monitoring:} While YoY and
+  QoQ revenue growth is positive, the percentage growth rates seem to be
+  moderating. It is crucial to monitor if this is a natural deceleration
+  as the company scales or a sign of slowing market momentum. Sustaining
+  a healthy double-digit growth rate remains important.
+\item
+  \textbf{High SG\&A Costs Impacting Profitability:} SG\&A expenses are
+  consuming a significant portion of revenue, hindering the path to
+  profitability. Workiva needs to demonstrate operating leverage by
+  growing revenue at a faster rate than SG\&A expenses to improve
+  profitability metrics over time. The recent slight dip in SG\&A as a
+  percentage of revenue in Q4 2024, if sustained, could be an early
+  positive signal.
+\item
+  \textbf{Operating and Net Losses Persist, but Recent Improvement
+  Possible:} Workiva is still operating at a loss, which is not uncommon
+  for growth-oriented companies. However, the recent quarterly data (Q3
+  \& Q4 2024) suggests a potential trend of decreasing operating and net
+  losses, which warrants close observation in future quarters. It is too
+  early to definitively say if the company is on a clear path to
+  profitability based on just two quarters of data.
+\end{itemize}
+
+\section{Financial Analysis
+Conclusion}\label{financial-analysis-conclusion}
+
+Workiva is demonstrating revenue growth, but profitability remains a
+challenge. The quarterly data suggests a potential stabilization or even
+slight improvement in loss trends in the most recent periods. However,
+continued focus on operating leverage, efficient SG\&A management, and
+sustaining healthy revenue growth, particularly in subscription revenue,
+will be critical for Workiva to achieve and maintain profitability and
+enhance shareholder value. Further monitoring of these quarterly trends
+and deeper analysis as recommended above are essential for a more
+comprehensive CFA-style financial assessment.
+
+\section{Valuation}\label{valuation}
+
+\subsection{Valuation methodologies:}\label{valuation-methodologies}
+
+\begin{itemize}
+\tightlist
+\item
+  Incorporated Monte Carlo simulations using growth (18--20\%), gross
+  margin (\textasciitilde77\%), SG\&A (\textasciitilde61\%), and renewal
+  rate (\textasciitilde98\%). Discounted future free cash flows,
+  balancing short-term net losses with anticipated operating leverage
+  and margin expansion.
+\item
+  Relative valuation
+
+  \begin{itemize}
+  \tightlist
+  \item
+    EV/Revenue \& P/S: Benchmarked vs.~SAP, Oracle, Intuit, and
+    AuditBoard; Workiva trades at a premium justified by higher
+    recurring revenue mix (89\%) and robust ESG/GRC exposure.
+  \item
+    EV/EBITDA: Currently negative due to net losses, but improving
+    trajectory suggests multiple re-rating as SG\&A scales and operating
+    leverage improves.
+  \end{itemize}
+\item
+  Comparable company analysis vs.~SAP, Oracle, Intuit, AuditBoard.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Growth-centric peers (Intuit, AuditBoard) support higher multiples;
+    large-cap peers (SAP, Oracle) offer established baseline.
+  \item
+    Workiva's competitive edge lies in its integrated reporting
+    ecosystem, ESG/GRC leadership, and near-98\% renewal rates.
+  \end{itemize}
+\end{itemize}
+
+\subsection{Key valuation drivers:}\label{key-valuation-drivers}
+
+\begin{itemize}
+\tightlist
+\item
+  Growth in ESG \& GRC adoption.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Sustained demand for integrated financial and non-financial
+    reporting solutions.
+  \item
+    Expanding suite of global statutory, SOX, and audit solutions
+    fueling cross-selling.
+  \end{itemize}
+\item
+  Subscription renewal rates (97.9\%).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    High retention underscores sticky customer base and recurring
+    revenue stability.
+  \item
+    Strengthens DCF assumptions for future cash flow predictability.
+  \end{itemize}
+\item
+  Operating leverage potential.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Gross margin near 77\% supports scaling; SG\&A ratio
+    (\textasciitilde60\%+) is expected to moderate with top-line growth.
+  \item
+    Room for margin expansion as product and geography investments
+    mature.
+  \end{itemize}
+\end{itemize}
+
+\subsection{Target price estimation \& valuation sensitivity
+analysis.}\label{target-price-estimation-valuation-sensitivity-analysis.}
+
+\begin{itemize}
+\tightlist
+\item
+  Monte Carlo Outcome: Central scenario converges around \$102 per
+  share, reflecting moderate growth (18--20\%) and stable gross margins.
+\item
+  Sensitivity Analysis:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    +/- 2\% change in revenue growth alters fair value by
+    \textasciitilde\$8--\$10.
+  \item
+    SG\&A Efficiency: 1--2\% drop in SG\&A as \% of revenue boosts
+    margins and can raise valuation by mid-single-digit percentages.
+  \item
+    Renewal Rate Impact: Each 1\% shift in subscription renewal rate
+    significantly affects recurring revenue base and forward multiples.
+  \end{itemize}
+\end{itemize}
+
+\subsection{Conclusion:}\label{conclusion}
+
+Integrating DCF, relative valuations, and competitive benchmarking
+supports a \$102 target price. Upside hinges on sustained ESG/GRC
+demand, high renewal rates, and disciplined cost management. Downside
+risk lies in slower revenue growth or delayed operating leverage.
+
+\section{Investment Risks}\label{investment-risks}
+
+\subsection{Balancing Growth with Financial Stability: Workiva's Key
+Risks:}\label{balancing-growth-with-financial-stability-workivas-key-risks}
+
+Workiva's risk factors could challenge the company's ability to sustain
+this momentum. These risks, which span regulatory, competitive,
+operational, financial, macroeconomic, and broader industry
+considerations, underscore the delicate balance between investing for
+expansion and maintaining financial stability.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Regulatory risks:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Ongoing legislative and regulatory changes remain central to
+    Workiva's market. The complexity of regulations requiring
+    transparent reporting is a key driver for its platform, but sudden
+    shifts in disclosure rules---particularly for ESG---can alter demand
+    and impose new compliance burdens.
+  \item
+    Stricter data privacy regulations (e.g., GDPR) and country-specific
+    mandates intensify the pressure to maintain consistent global
+    compliance.
+  \item
+    As Workiva continues to expand internationally, it must navigate
+    diverse legal and regulatory requirements, which could elevate
+    operating costs if different regions impose overlapping or
+    conflicting standards.
+  \end{itemize}
+\item
+  \textbf{Competitive risks:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The competitive landscape includes large enterprise software
+    providers, which may leverage broader product portfolios to undercut
+    pricing or bundle solutions. This risk intensifies as major vendors
+    invest more aggressively in cloud-based platforms that overlap with
+    Workiva's offerings.
+  \item
+    Smaller niche players can gain traction quickly by focusing on
+    specific solutions and potentially luring customers with lower entry
+    costs.
+  \item
+    Given that Workiva operates in a market where competing solutions
+    evolve rapidly, sustaining a technological edge in areas like data
+    linking, collaboration features, and integrations is critical to
+    defending its market position.
+  \end{itemize}
+\item
+  \textbf{Operational risks:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Cybersecurity threats continue to escalate across the software
+    industry, posing significant concerns for a platform that handles
+    sensitive financial and ESG data. A breach could damage Workiva's
+    reputation, disrupt services, and result in legal exposure.
+  \item
+    Implementing emerging technologies---such as generative AI---must be
+    carefully managed to avoid system failures or integration issues
+    that could erode customer trust.
+  \item
+    Foreign operations entail compliance with various local regulations,
+    foreign exchange complexities, and geopolitical uncertainties.
+    Maintaining consistent service levels across multiple regions and
+    time zones requires significant coordination and resources.
+  \end{itemize}
+\item
+  \textbf{Financial risks:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Workiva's consistent net losses signal ongoing challenges with
+    profitability. Elevated SG\&A expenditures, alongside investments in
+    product development and international expansion, could strain
+    operating margins if revenue growth decelerates.
+  \item
+    Rising debt levels or the need for further capital raises may be
+    subject to unfavorable market conditions, thus constraining
+    financial flexibility.
+  \item
+    Workiva's stock price is also susceptible to volatility, influenced
+    by broader market trends and investor sentiment. Significant sales
+    of shares or conversions of notes can add downward pressure on share
+    value, further complicating capital-raising efforts.
+  \end{itemize}
+\item
+  \textbf{Macroeconomic risks:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    An economic downturn could reduce enterprise software spending,
+    placing pressure on Workiva's top-line growth.
+  \item
+    Heightened recessionary concerns or sudden shifts in interest rates
+    can lead organizations to delay purchasing decisions or scale back
+    SaaS subscriptions---particularly for solutions deemed
+    non-essential.
+  \item
+    International market volatility, whether stemming from currency
+    fluctuations or geopolitical conflicts, adds another layer of
+    uncertainty. Adverse exchange rate movements could negatively affect
+    reported financial performance.
+  \end{itemize}
+\item
+  \textbf{Industry risk:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Workiva operates in a landscape shaped by rapid technological
+    change, frequent updates to industry standards, and consolidation
+    among major players.
+  \item
+    Some competitors may opt to align their pricing aggressively or
+    bundle regulatory reporting capabilities with broader enterprise
+    offerings.
+  \item
+    Others could respond quickly to evolving demands by launching
+    competing features---especially in GRC and ESG-related solutions.
+  \item
+    Rising cybersecurity threats represent an industry-wide challenge,
+    amplifying the need for ongoing investment in secure infrastructure.
+  \item
+    Should Workiva fail to anticipate technology shifts, maintain robust
+    partnerships, or address emerging customer needs, it risks losing
+    ground in a highly dynamic environment.
+  \end{itemize}
+\end{itemize}
+
+While Workiva continues to demonstrate notable momentum, balancing this
+growth with prudent financial management remains a pivotal concern.
+Regulatory shifts, pricing pressure from larger competitors, operational
+complexities tied to cybersecurity and AI, persistent net losses,
+macroeconomic headwinds, and intensifying industry competition all
+represent meaningful hurdles. Overcoming these challenges will hinge on
+effectively managing the pace of strategic investments, optimizing
+go-to-market execution, and reinforcing the platform's value proposition
+amid evolving market demands.
+
+\section{Environmental, Social, and Governance
+(ESG)}\label{environmental-social-and-governance-esg}
+
+Workiva's commitment to ESG is woven into the fabric of its platform,
+aligning financial and non-financial processes to support organizations
+seeking greater transparency, accountability, and stakeholder trust. By
+integrating ESG reporting alongside financial reporting and GRC, Workiva
+provides a unified, audit-ready environment that simplifies data
+collection, collaboration, and disclosure. This focus reflects a broader
+industry shift toward stakeholder capitalism, where organizations are
+increasingly expected to demonstrate responsible environmental
+practices, a strong social conscience, and sound governance frameworks.
+
+\subsection{ESG Integration: Workiva's platform supports ESG reporting
+for
+clients.}\label{esg-integration-workivas-platform-supports-esg-reporting-for-clients.}
+
+\begin{itemize}
+\tightlist
+\item
+  A notable aspect of Workiva's ESG footprint is its ESG Integration.
+  The platform automates data gathering from disparate ESG sources and
+  supports the preparation of investor-grade disclosures that can span
+  sustainability reports, statutory filings, and earning call scripts,
+  including XBRL tagging for standardized reporting.
+\item
+  The ESG Explorer tool helps teams reference frameworks like GRI, SASB,
+  TCFD, and UNSDGs, positioning users to navigate the evolving
+  regulatory landscape effectively.
+\item
+  GRC Connections tie controls to ESG metrics, illustrating Workiva's
+  emphasis on bridging traditional compliance activities with emerging
+  sustainability requirements.
+\end{itemize}
+
+\subsection{Company ESG Ratings:}\label{company-esg-ratings}
+
+\begin{itemize}
+\tightlist
+\item
+  Beyond enabling clients to achieve comprehensive ESG disclosures,
+  Workiva has attained recognized ESG Ratings of its own. The consistent
+  AAA rating from MSCI underscores the company's effective management of
+  ESG risks and opportunities, elevating its position in the market.
+\item
+  High ratings can be a differentiating factor for analysts and
+  shareholders who increasingly weigh ESG performance when assessing
+  long-term growth potential and risk profiles.
+\end{itemize}
+
+\subsection{Diversity \& Inclusion}\label{diversity-inclusion}
+
+\begin{itemize}
+\tightlist
+\item
+  WK also prioritizes Diversity \& Inclusion (DE\&I), treating it not as
+  a peripheral objective but as a fundamental pillar of its corporate
+  culture.
+\item
+  By sponsoring Business Employee Resource Groups, recruiting from broad
+  talent pools, and tracking representation goals, Workiva underscores
+  its commitment to fostering belonging, empowerment, and innovation.
+\item
+  These inclusive initiatives---complemented by robust leadership
+  sponsorship---help create an environment where diverse perspectives
+  and backgrounds thrive.
+\end{itemize}
+
+\subsection{Sustainability Strategy:}\label{sustainability-strategy}
+
+\begin{itemize}
+\tightlist
+\item
+  Underpinning Workiva's Sustainability Strategy is an established
+  governance structure, guided by an internal ESG Task Force and advised
+  by an external ESG Advisory Council.
+\item
+  Aligning with the United Nations Sustainable Development Goals and the
+  Task Force on Climate-related Disclosures, Workiva advances
+  initiatives that include corporate philanthropy, environmentally
+  responsible business practices, and transparent reporting.
+\item
+  These efforts, in turn, inform how stakeholders perceive the company's
+  long-term viability and risk management approach.
+\end{itemize}
+
+\subsection{How ESG practices affect valuation \& investor
+sentiment.}\label{how-esg-practices-affect-valuation-investor-sentiment.}
+
+\begin{itemize}
+\tightlist
+\item
+  High-quality ESG disclosures, strengthened by Workiva's platform
+  capabilities, can mitigate reputational risks, meet shareholder
+  expectations, and potentially enhance market confidence.
+\item
+  As companies face intensifying pressure to disclose both financial and
+  non-financial results, the ability to deliver accurate, reliable ESG
+  data may contribute to investor optimism and, by extension, support
+  favorable valuations in competitive capital markets.
+\end{itemize}
+
+\subsection{Key ESG view}\label{key-esg-view}
+
+\begin{itemize}
+\tightlist
+\item
+  Workiva's strong ESG focus and consistently high ratings indicate
+  proactive risk management and alignment with stakeholder
+  expectations---factors that may appeal to socially responsible and
+  traditional investors alike.
+\item
+  Combined with the company's unified approach to financial and
+  non-financial reporting, this ESG leadership can potentially drive
+  brand value and differentiate the platform in a rapidly maturing
+  market.
+\item
+  For investors placing a premium on responsible corporate practices and
+  sustained growth in an expanding ESG environment, Workiva's position
+  and performance in this sphere present a compelling case.
+\end{itemize}
+
+\section{Investment Summary}\label{investment-summary}
+
+\textbf{Recommendation: HOLD}
+
+Workiva's cloud-native platform addresses growing regulatory and
+stakeholder demands for integrated financial, ESG, and GRC reporting.
+With approximately 89\% of revenue from subscription-based services and
+a renewal rate near 98\%, Workiva benefits from high customer retention
+and dependable recurring revenue. Its strong gross margin (around 77\%)
+indicates potential for operating leverage once spending stabilizes.
+
+\subsection{Key Considerations}\label{key-considerations}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Strong Market Tailwinds:} Heightened compliance and ESG
+  requirements support continuing demand for Workiva's unified reporting
+  solutions, driving solid top-line growth.
+\item
+  \textbf{Recurring Revenue Model:} Subscription revenue dominance
+  underpins predictable cash flows and fosters a sticky customer base.
+\item
+  \textbf{Profitability Challenges:} Elevated SG\&A (58--62\% of sales)
+  and ongoing net losses (-\$127.5M in 2023) raise concerns about
+  near-term earnings. While recent quarters hint at smaller losses, a
+  clear path to sustained profitability remains unproven.
+\item
+  \textbf{Valuation \& Risk:} Monte Carlo and DCF analyses converge
+  around \$102 per share, assuming moderate revenue growth (18--20\%)
+  and stable margins. However, any slowdown in growth or delays in
+  reducing operating costs could pressure valuation.
+\end{itemize}
+
+\subsection{Conclusion}\label{conclusion-1}
+
+Workiva's emphasis on compliance and ESG, coupled with strong
+subscription revenues, suggests significant long-term promise.
+Nevertheless, persistent losses and ongoing cost pressures warrant
+caution. We recommend a HOLD, anticipating that Workiva will need to
+demonstrate consistent cost discipline and a clear path to profitability
+before justifying a more bullish stance.
+
+test Figure~\ref{fig-testdel}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Differentiate between deterministic and stochastic trends}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Stochastic Trend: Random trend that does not follow a discernible or
+    predictable pattern.
+  \item
+    Deterministic Trend: Can be modeled with mathematical functions,
+    facilitating the long-term prediction of the behavior.
+  \end{itemize}
+\end{itemize}
+
+known as {ergodic}\footnote{{A time series model that is stationary in
+  the mean is ergodic in the mean if the time average for a single time
+  series tends to the ensemble mean as the length of the time series
+  increases (2.2 2.2.3).}}, and the models in this book are all ergodic.
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{ss/testdel.png}}
+
+}
+
+\caption{\label{fig-testdel}}
+
+\end{figure}%
+
+
+
+
+\end{document}
